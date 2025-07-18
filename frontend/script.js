@@ -1,4 +1,4 @@
-const API_BASE = "http://127.0.0.1:5000";
+const API_BASE = "https://momo-data-analysis-backend.onrender.com";
 const TRANSACTION_TYPES = [
     "All", "Received", "Payment", "Airtime", "CashPower", "Transfer",
     "Deposit", "Withdrawal", "BankTransfer", "ThirdParty", "Bundle"
@@ -16,7 +16,7 @@ let allData = [];
 
 async function fetchData(page = 1, search = "", forContacts = false) {
     try {
-        const params = forContacts 
+        const params = forContacts
             ? `?page=1&per_page=1000&search=${encodeURIComponent(search)}`
             : `?page=${page}&per_page=${perPage}&search=${encodeURIComponent(search)}`;
         const res = await fetch(`${API_BASE}/data${params}`);
@@ -184,7 +184,7 @@ function renderContactsTab() {
     });
     console.log("Extracted contacts:", contacts, "Total messages:", allData.length, "Messages:", allData.map(row => row.message));
     const topContacts = Object.entries(contacts).sort((a, b) => b[1] - a[1]).slice(0, 5);
-    document.getElementById("topContactsList").innerHTML = topContacts.length > 0 
+    document.getElementById("topContactsList").innerHTML = topContacts.length > 0
         ? topContacts.map(([contact, count]) => `
             <div class="flex justify-between p-2 border-b">
                 <span>${contact}</span>
